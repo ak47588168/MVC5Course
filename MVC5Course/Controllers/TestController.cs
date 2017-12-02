@@ -14,6 +14,7 @@ namespace MVC5Course.Controllers
         public ActionResult Index()
         {
             var data = from p in db.Product
+                       orderby p.ProductName
                        select p;
 
             return View(data);
@@ -38,7 +39,7 @@ namespace MVC5Course.Controllers
             return View(data);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             var p = db.Product.Find(id);
 
@@ -64,18 +65,19 @@ namespace MVC5Course.Controllers
             return View(data);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             var p = db.Product.Find(id);
 
             return View(p);
         }
 
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             var p = db.Product.Find(id);
 
+            db.OrderLine.RemoveRange(p.OrderLine);
             db.Product.Remove(p);
             db.SaveChanges();
 
