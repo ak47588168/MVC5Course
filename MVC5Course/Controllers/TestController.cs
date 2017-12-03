@@ -7,10 +7,10 @@ using MVC5Course.Models;
 
 namespace MVC5Course.Controllers
 {
-    public class TestController : Controller
+    public class TestController : BaseController
     {
         //FabricsEntities db = new FabricsEntities();
-        ProductRepository productRepo = RepositoryHelper.GetProductRepository();
+        //ProductRepository productRepo = RepositoryHelper.GetProductRepository();
 
         public ActionResult Index()
         {
