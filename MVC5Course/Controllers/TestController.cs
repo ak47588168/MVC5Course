@@ -86,14 +86,22 @@ namespace MVC5Course.Controllers
         public ActionResult Delete(int id)
         {
             //var p = db.Product.Find(id);
-            var p = productRepo.Find(id);
+            //var p = productRepo.Find(id);
 
             //db.OrderLine.RemoveRange(p.OrderLine);
             //db.Product.Remove(p);
             //db.SaveChanges();
-            p.IsDeleted = true;
+            //p.IsDeleted = true;
             //db.SaveChanges();
-            productRepo.UnitOfWork.Commit();
+            //productRepo.UnitOfWork.Commit();
+
+            var item = productRepo.Find(id);
+
+            if (item != null)
+            {
+                productRepo.Delete(productRepo.Find(id));
+                productRepo.UnitOfWork.Commit();
+            }
 
             return RedirectToAction("Index");
         }
