@@ -47,5 +47,10 @@ namespace MVC5Course.Controllers
                        };
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult RedirectTest()
+        {
+            return RedirectToAction("FileTest", new { dl = 1 });
+        }
     }
 }

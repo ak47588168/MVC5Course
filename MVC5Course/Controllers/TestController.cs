@@ -68,6 +68,8 @@ namespace MVC5Course.Controllers
                 //db.SaveChanges();
                 productRepo.UnitOfWork.Commit();
 
+                TempData["item"] = p;
+
                 return RedirectToAction("Index");
             }
 
