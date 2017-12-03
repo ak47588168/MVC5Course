@@ -16,7 +16,12 @@ namespace MVC5Course.Controllers
 
         public ActionResult PartaiViewIndex()
         {
-            return View("Index");
+            return PartialView("Index");
+        }
+
+        public ActionResult ContentTest()
+        {
+            return PartialView("JsAlert", "修改成功");
         }
     }
 }
