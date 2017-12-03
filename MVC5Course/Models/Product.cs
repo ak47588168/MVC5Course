@@ -11,8 +11,7 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,20 +19,14 @@ namespace MVC5Course.Models
         {
             this.OrderLine = new HashSet<OrderLine>();
         }
-
-        [Required]
+    
         public int ProductId { get; set; }
-        [Required(ErrorMessage = "請輸入[商品名稱]")]
         public string ProductName { get; set; }
-        [Required(ErrorMessage = "請輸入[商品單價]")]
-        [Range(minimum: 0, maximum: 999)]
         public Nullable<decimal> Price { get; set; }
-        [Required]
         public Nullable<bool> Active { get; set; }
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:#,##0}")]
         public Nullable<decimal> Stock { get; set; }
-
+        public bool IsDeleted { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLine { get; set; }
     }

@@ -14,6 +14,7 @@ namespace MVC5Course.Controllers
         public ActionResult Index()
         {
             var data = from p in db.Product
+                       where p.IsDeleted != true
                        orderby p.ProductName
                        select p;
 
@@ -77,8 +78,10 @@ namespace MVC5Course.Controllers
         {
             var p = db.Product.Find(id);
 
-            db.OrderLine.RemoveRange(p.OrderLine);
-            db.Product.Remove(p);
+            //db.OrderLine.RemoveRange(p.OrderLine);
+            //db.Product.Remove(p);
+            //db.SaveChanges();
+            p.IsDeleted = true;
             db.SaveChanges();
 
             return RedirectToAction("Index");
