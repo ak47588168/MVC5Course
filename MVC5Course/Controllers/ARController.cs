@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class ARController : Controller
+    public class ARController : BaseController
     {
         // GET: AR
-        public ActionResult Index()
+        public ActionResult Index(string dl)
         {
             return View();
         }
@@ -22,6 +22,30 @@ namespace MVC5Course.Controllers
         public ActionResult ContentTest()
         {
             return PartialView("JsAlert", "修改成功");
+        }
+
+        public ActionResult FileTest(string dl)
+        {
+            if (string.IsNullOrWhiteSpace(dl))
+            {
+                return File(Server.MapPath("~/App_Data/broken_window.png"), "image/jpeg");
+            }
+            else
+            {
+                return File(Server.MapPath("~/App_Data/broken_window.png"), "image/jpeg", "windows.jpg");
+            }
+        }
+
+        public ActionResult JsonTest()
+        {
+            var data = from p in productRepo.All()
+                       select new
+                       {
+                           p.ProductId,
+                           p.ProductName,
+                           p.Price
+                       };
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }
