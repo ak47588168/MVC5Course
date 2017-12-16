@@ -1,0 +1,24 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@using System.Data.Entity.Validation
+
+@{
+    ViewBag.Title = "Error";
+
+    var ex = Model.Exception as DbEntityValidationException;
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+<ul>
+    @foreach (var e in ex.EntityValidationErrors)
+    {
+        foreach (var r in e.ValidationErrors)
+        {
+            <li>
+                @r.PropertyName 有誤，原因：@r.ErrorMessage;
+            </li>
+        }
+    }
+</ul>
+

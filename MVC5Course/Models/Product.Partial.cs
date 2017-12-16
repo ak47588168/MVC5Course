@@ -15,6 +15,10 @@ namespace MVC5Course.Models
             {
                 yield return new ValidationResult("庫存過小！", new[] { "Stock" });
             }
+            if (Price >= 1000M)
+            {
+                yield return new ValidationResult("Prcie 不可大於 1000.00！", new[] { "Price" });
+            }
         }
     }
 

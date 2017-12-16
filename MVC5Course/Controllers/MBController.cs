@@ -1,6 +1,7 @@
 ﻿using MVC5Course.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,9 +35,10 @@ namespace MVC5Course.Controllers
         }
 
         [HttpPost]
+        [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "Error_DbEntityValidationException")]
         public ActionResult Index(MBProductsVM[] data)
         {
-            if(data == null)
+            if (data == null)
             {
                 return HttpNotFound();
             }
