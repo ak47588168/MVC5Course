@@ -1,0 +1,22 @@
+﻿@{
+    var items = new[] { 1, 2, 3, 4, 5 };
+
+}
+@foreach (var i in items)
+{
+    @(i)
+}
+
+
+@foreach (var i in items)
+{
+    @i<text> </text>;
+}
+
+
+<ul>
+@foreach (var i in items)
+{
+    <li>@(i)</li>
+}
+</ul>
