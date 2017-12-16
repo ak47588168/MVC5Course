@@ -21,6 +21,11 @@ namespace MVC5Course.Models
             //base.Delete(entity);
             entity.IsDeleted = true;
         }
+
+        public IQueryable<Product> GetTop20()
+        {
+            return All().Take(20);
+        }
     }
 
 	public  interface IProductRepository : IRepository<Product>
