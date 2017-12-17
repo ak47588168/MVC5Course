@@ -178,6 +178,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\PriceDDLAttribute.cs" />
     <Compile Include="ActionFilters\LogThisAttribute.cs" />
     <Compile Include="ActionFilters\ShareDataAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

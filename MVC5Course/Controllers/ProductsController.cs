@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVC5Course.ActionFilters;
 using MVC5Course.Models;
 using MVC5Course.ViewModels;
 
@@ -50,6 +51,7 @@ namespace MVC5Course.Controllers
         }
 
         // GET: Products/Create
+        [PriceDDL]
         public ActionResult Create()
         {
             return View();
@@ -73,6 +75,7 @@ namespace MVC5Course.Controllers
         }
 
         // GET: Products/Edit/5
+        [PriceDDL]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,14 +88,7 @@ namespace MVC5Course.Controllers
                 return HttpNotFound();
             }
 
-            var priceList = (from p in db.Product
-                            select new
-                            {
-                                Text = "$" + p.Price, 
-                                Value = p.Price
-                            }).Distinct().OrderBy(p => p.Value);
 
-            ViewBag.Price = new SelectList(priceList, "Value", "Text", product.Price);
 
             return View(product);
         }
@@ -148,7 +144,5 @@ namespace MVC5Course.Controllers
             }
             base.Dispose(disposing);
         }
-
-
     }
 }
