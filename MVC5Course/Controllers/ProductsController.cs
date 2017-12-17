@@ -84,6 +84,16 @@ namespace MVC5Course.Controllers
             {
                 return HttpNotFound();
             }
+
+            var priceList = (from p in db.Product
+                            select new
+                            {
+                                Text = "$" + p.Price, 
+                                Value = p.Price
+                            }).Distinct().OrderBy(p => p.Value);
+
+            ViewBag.Price = new SelectList(priceList, "Value", "Text", product.Price);
+
             return View(product);
         }
 
